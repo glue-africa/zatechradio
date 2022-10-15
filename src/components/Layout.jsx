@@ -276,6 +276,7 @@ export function Layout({ children }) {
                   BuyMeACoffeeIcon,
                   'https://www.buymeacoffee.com/zatechradio',
                 ],
+                ['Twitter', TwitterIcon, 'https://twitter.com/zatechradio'],
               ].map(([label, Icon, Href]) => (
                 <li key={label} className="flex">
                   <Link
