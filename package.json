@@ -28,6 +28,7 @@
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.5",
     "prettier": "^2.7.0",
-    "prettier-plugin-tailwindcss": "^0.1.13"
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "tailwind-scrollbar": "^2.1.0-preview.0"
   }
 }

@@ -50,7 +50,7 @@ function EpisodeEntry({ episode }) {
             id={`episode-${episode.id}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href={`/${episode.id}`}>{episode.title}</Link>
+            <Link href="#">{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
@@ -76,19 +76,6 @@ function EpisodeEntry({ episode }) {
                 Listen
               </span>
             </button>
-            <span
-              aria-hidden="true"
-              className="text-sm font-bold text-slate-400"
-            >
-              /
-            </span>
-            <Link
-              href={`/${episode.id}`}
-              className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`Show notes for episode ${episode.title}`}
-            >
-              Show notes
-            </Link>
           </div>
         </div>
       </Container>
@@ -101,8 +88,8 @@ export default function Home({ episodes }) {
     <>
       <Head>
         <title>
-          Their Side - Conversations with the most tragically misunderstood
-          people of our time
+          ZATechRadio - Helping black people get in, stay in and thrive in tech.
+          One conversation at a time
         </title>
         <meta
           name="description"
@@ -126,14 +113,14 @@ export default function Home({ episodes }) {
 }
 
 export async function getStaticProps() {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
+  const myFeed = await parse('https://iono.fm/rss/chan/7095')
 
   return {
     props: {
-      episodes: feed.items.map(
-        ({ id, title, description, enclosures, published }) => ({
-          id,
-          title: `${id}: ${title}`,
+      episodes: myFeed.items.map(
+        ({ title, description, enclosures, published, created }) => ({
+          id: created,
+          title,
           published,
           description,
           audio: enclosures.map((enclosure) => ({
