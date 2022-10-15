@@ -88,8 +88,8 @@ export default function Home({ episodes }) {
     <>
       <Head>
         <title>
-          ZATechRadio - Helping black people get in, stay in and thrive in tech.
-          One conversation at a time
+          ZATechRadio - Helping techies get in, stay in and thrive in tech. One
+          conversation at a time
         </title>
         <meta
           name="description"

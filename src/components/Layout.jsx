@@ -202,6 +202,11 @@ function AboutSection(props) {
 
 export function Layout({ children }) {
   let hosts = ['VT', 'Sihle', 'Sdu']
+  let hosts2 = [
+    ['VT', 'https://twitter.com/vt_codes'],
+    ['Sihle', 'https://twitter.com/chle_fromtheweb'],
+    ['Sdu', 'https://twitter.com/sduduzo_g'],
+  ]
 
   return (
     <>
@@ -241,7 +246,7 @@ export function Layout({ children }) {
               <Link href="/">ZATechRadio</Link>
             </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              Helping black people get in, stay in and thrive in tech. One
+              Helping techies get in, stay in and thrive in tech. One
               conversation at a time
             </p>
           </div>
@@ -313,6 +318,17 @@ export function Layout({ children }) {
                   </span>
                 )}
                 {host}
+              </Fragment>
+            ))}
+
+            {hosts2.map(([name, handle], hostIndex) => (
+              <Fragment key={name}>
+                {hostIndex !== 0 && (
+                  <span aria-hidden="true" className="text-slate-400">
+                    /
+                  </span>
+                )}
+                <Link href={handle}>{name}</Link>
               </Fragment>
             ))}
           </div>
