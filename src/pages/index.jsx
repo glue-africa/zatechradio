@@ -93,7 +93,7 @@ export default function Home({ episodes }) {
         </title>
         <meta
           name="description"
-          content="Conversations with the most tragically misunderstood people of our time."
+          content="Helping techies get in, stay in and thrive in tech. One conversation at a time"
         />
       </Head>
       <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">

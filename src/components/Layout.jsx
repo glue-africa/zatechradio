@@ -166,7 +166,7 @@ function PersonIcon(props) {
 }
 
 function AboutSection(props) {
-  let [isExpanded, setIsExpanded] = useState(false)
+  let [isExpanded, setIsExpanded] = useState(true)
 
   return (
     <section {...props}>
@@ -245,13 +245,9 @@ export function Layout({ children }) {
             <p className="text-xl font-bold text-slate-900">
               <Link href="/">ZATechRadio</Link>
             </p>
-            <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              Helping techies get in, stay in and thrive in tech. One
-              conversation at a time
-            </p>
           </div>
-          <AboutSection className="mt-12 hidden lg:block" />
-          <section className="mt-10 lg:mt-12">
+          <AboutSection className="mt-6 hidden lg:block" />
+          <section className="mt-10 lg:mt-6">
             <h2 className="sr-only flex items-center font-mono text-sm font-medium leading-7 text-slate-900 lg:not-sr-only">
               <TinyWaveFormIcon
                 colors={['fill-indigo-300', 'fill-blue-300']}
