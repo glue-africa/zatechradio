@@ -201,8 +201,7 @@ function AboutSection(props) {
 }
 
 export function Layout({ children }) {
-  let hosts = ['VT', 'Sihle', 'Sdu']
-  let hosts2 = [
+  let hosts = [
     ['VT', 'https://twitter.com/vt_codes'],
     ['Sihle', 'https://twitter.com/chle_fromtheweb'],
     ['Sdu', 'https://twitter.com/sduduzo_g'],
@@ -306,18 +305,7 @@ export function Layout({ children }) {
             <span className="ml-2.5">Hosted by</span>
           </h2>
           <div className="mt-2 flex gap-6 text-sm font-bold leading-7 text-slate-900">
-            {hosts.map((host, hostIndex) => (
-              <Fragment key={host}>
-                {hostIndex !== 0 && (
-                  <span aria-hidden="true" className="text-slate-400">
-                    /
-                  </span>
-                )}
-                {host}
-              </Fragment>
-            ))}
-
-            {hosts2.map(([name, handle], hostIndex) => (
+            {hosts.map(([name, handle], hostIndex) => (
               <Fragment key={name}>
                 {hostIndex !== 0 && (
                   <span aria-hidden="true" className="text-slate-400">
