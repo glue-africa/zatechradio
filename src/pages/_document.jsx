@@ -13,6 +13,9 @@ export default function Document() {
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png"></link>
+        <meta name="theme-color" content="#fff" />
       </Head>
       <body>
         <Main />
