@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { parse } from 'rss-to-json'
+import DOMPurify from "isomorphic-dompurify"
 
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
@@ -56,9 +57,9 @@ function EpisodeEntry({ episode }) {
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
-          <p className="mt-1 text-base leading-7 text-slate-700">
-            {episode.description}
-          </p>
+          <p className="mt-1 text-base leading-7 text-slate-700"
+            dangerouslySetInnerHTML = {{ __html: DOMPurify.sanitize(episode.description) }}
+          />
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
