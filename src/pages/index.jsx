@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { parse } from 'rss-to-json'
-import DOMPurify from "dompurify"
+import DOMPurify from "isomorphic-dompurify"
 
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
