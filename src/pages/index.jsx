@@ -51,23 +51,22 @@ function EpisodeEntry({ episode }) {
             id={`episode-${episode.id}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href={`/${ episode.id }`}>{episode.title}</Link>
+            <Link href={`/${episode.id}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
           <p className="mt-1 text-base leading-7 text-slate-700"
-            dangerouslySetInnerHTML = {{ __html: DOMPurify.sanitize(episode.description) }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(episode.description) }}
           />
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
               onClick={() => player.toggle()}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${
-                episode.title
-              }`}
+              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${episode.title
+                }`}
             >
               <PlayPauseIcon
                 playing={player.playing}
@@ -96,6 +95,20 @@ export default function Home({ episodes }) {
           name="description"
           content="Helping techies get in, stay in and thrive in tech. One conversation at a time"
         />
+
+        <meta property="og:url" content="https://zatechradio.co.za" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="ZATechRadio - Helping techies get in, stay in and thrive in tech. One conversation at a time" />
+        <meta property="og:description" content="Helping techies get in, stay in and thrive in tech. One conversation at a time" />
+        <meta property="og:image" content="./public/icon-512x512.png"  />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="zatechradio.co.za" />
+        <meta property="twitter:url" content="https://zatechradio.co.za" />
+        <meta name="twitter:title" content="ZATechRadio - Helping techies get in, stay in and thrive in tech. One conversation at a time" />
+        <meta name="twitter:description" content="Helping techies get in, stay in and thrive in tech. One conversation at a time" />
+        <meta name="twitter:image" content="./public/icon-512x512.png"  />
+
       </Head>
 
       <NextSeo
@@ -113,8 +126,7 @@ export default function Home({ episodes }) {
               url: './public/icon-512x512.png',
               width: 512,
               height: 512,
-              alt: 'Og Image Alt',
-              type: 'image/png',
+              alt: 'ZATechRadio logo',
             },
           ],
           siteName: 'ZATechRadio',

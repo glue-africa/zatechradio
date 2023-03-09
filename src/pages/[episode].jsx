@@ -29,9 +29,23 @@ export default function Episode({ episode }) {
       <Head>
         <title>{`${episode.title} - Their Side`}</title>
         <meta name="description" content={episode.description} />
+
+        <meta property="og:url" content="https://zatechradio.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${episode.title}`} />
+        <meta property="og:description" content={`${episode.description}`} />
+        <meta property="og:image" content="./public/icon-512x512.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="https://zatechradio.co.za" />
+        <meta property="twitter:url" content="https://zatechradio.co.za" />
+        <meta name="twitter:title" content={`${episode.title}`} />
+        <meta name="twitter:description" content={`${episode.description}`} />
+        <meta name="twitter:image" content="./public/icon-512x512.png" />
+
       </Head>
       <NextSeo
-        title={`${ episode.title } - ZATechRadio`}
+        title={`${episode.title} - ZATechRadio`}
         description={`${episode.description}`}
         canonical={`${episode.url}`}
         openGraph={{
@@ -43,8 +57,7 @@ export default function Episode({ episode }) {
               url: './public/icon-512x512.png',
               width: 512,
               height: 512,
-              alt: 'Og Image Alt',
-              type: 'image/png',
+              alt: 'ZATechRadio logo',
             },
           ],
           siteName: 'ZATechRadio',
@@ -86,17 +99,17 @@ export default function Episode({ episode }) {
 export async function getStaticProps({ params }) {
   const feed = await parse('https://iono.fm/rss/chan/7095')
   let episodes = feed.items
-  .map(({ id, title, description, enclosures, created, published }) => ({
-    id: created,
-    title: `${title}`,
-    description,
-    published,
-    audio: enclosures.map((enclosure) => ({
-      src: enclosure.url,
-      type: enclosure.type,
-    }))[0],
-  }))
-  
+    .map(({ id, title, description, enclosures, created, published }) => ({
+      id: created,
+      title: `${title}`,
+      description,
+      published,
+      audio: enclosures.map((enclosure) => ({
+        src: enclosure.url,
+        type: enclosure.type,
+      }))[0],
+    }))
+
   const episode = episodes.filter((item) => item.id == params.episode)[0]
 
 
