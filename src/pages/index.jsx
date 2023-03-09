@@ -110,7 +110,7 @@ export default function Home({ episodes }) {
           conversation at a time`,
           images: [
             {
-              url: '/public/icon-512x512.png',
+              url: './public/icon-512x512.png',
               width: 512,
               height: 512,
               alt: 'Og Image Alt',

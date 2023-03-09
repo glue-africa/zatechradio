@@ -40,7 +40,7 @@ export default function Episode({ episode }) {
           description: episode.description,
           images: [
             {
-              url: '/public/icon-512x512.png',
+              url: './public/icon-512x512.png',
               width: 512,
               height: 512,
               alt: 'Og Image Alt',
