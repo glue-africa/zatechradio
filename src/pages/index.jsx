@@ -97,6 +97,34 @@ export default function Home({ episodes }) {
           content="Helping techies get in, stay in and thrive in tech. One conversation at a time"
         />
       </Head>
+
+      <NextSeo
+        title={`ZATechRadio`}
+        description={`Helping techies get in, stay in and thrive in tech. One conversation at a time`}
+        canonical={`https://zatechradio.co.za`}
+        openGraph={{
+          url: `ZATechRadio - Helping techies get in, stay in and thrive in tech. One
+          conversation at a time`,
+          title: `ZATechRadio`,
+          description: `Helping techies get in, stay in and thrive in tech. One
+          conversation at a time`,
+          images: [
+            {
+              url: '/public/icon-512x512.png',
+              width: 512,
+              height: 512,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+          siteName: 'ZATechRadio',
+        }}
+        twitter={{
+          handle: '@zatechradio',
+          site: '@zatechradio',
+          cardType: 'summary_large_image',
+        }}
+      />
       <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">
         <Container>
           <h1 className="text-2xl font-bold leading-7 text-slate-900">
