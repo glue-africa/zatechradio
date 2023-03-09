@@ -51,7 +51,7 @@ function EpisodeEntry({ episode }) {
             id={`episode-${episode.id}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href="#">{episode.title}</Link>
+            <Link href={`/${ episode.id }`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
@@ -114,11 +114,11 @@ export default function Home({ episodes }) {
 }
 
 export async function getStaticProps() {
-  const myFeed = await parse('https://iono.fm/rss/chan/7095')
+  const feed = await parse('https://iono.fm/rss/chan/7095')
 
   return {
     props: {
-      episodes: myFeed.items.map(
+      episodes: feed.items.map(
         ({ title, description, enclosures, published, created }) => ({
           id: created,
           title,

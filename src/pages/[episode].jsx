@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import Head from 'next/head'
 import { parse } from 'rss-to-json'
+import { NextSeo } from 'next-seo';
 
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
@@ -29,6 +30,31 @@ export default function Episode({ episode }) {
         <title>{`${episode.title} - Their Side`}</title>
         <meta name="description" content={episode.description} />
       </Head>
+      <NextSeo
+        title={`${ episode.title } - ZATechRadio`}
+        description={`${episode.description}`}
+        canonical={`${episode.url}`}
+        openGraph={{
+          url: `https://zatechradio/${episode.id}`,
+          title: episode.title,
+          description: episode.description,
+          images: [
+            {
+              url: '/public/icon-512x512.png',
+              width: 512,
+              height: 512,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+          siteName: 'ZATechRadio',
+        }}
+        twitter={{
+          handle: '@zatechradio',
+          site: '@zatechradio',
+          cardType: 'summary_large_image',
+        }}
+      />
       <article className="py-16 lg:py-36">
         <Container>
           <header className="flex flex-col">
@@ -44,9 +70,7 @@ export default function Episode({ episode }) {
                 />
               </div>
             </div>
-            <p className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700">
-              {episode.description}
-            </p>
+            <p className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700" dangerouslySetInnerHTML={{ __html: episode.description }} />
           </header>
           <hr className="my-12 border-gray-200" />
           <div
@@ -60,20 +84,21 @@ export default function Episode({ episode }) {
 }
 
 export async function getStaticProps({ params }) {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
-  let episode = feed.items
-    .map(({ id, title, description, content, enclosures, published }) => ({
-      id: id.toString(),
-      title: `${id}: ${title}`,
-      description,
-      content,
-      published,
-      audio: enclosures.map((enclosure) => ({
-        src: enclosure.url,
-        type: enclosure.type,
-      }))[0],
-    }))
-    .find(({ id }) => id === params.episode)
+  const feed = await parse('https://iono.fm/rss/chan/7095')
+  let episodes = feed.items
+  .map(({ id, title, description, enclosures, created, published }) => ({
+    id: created,
+    title: `${title}`,
+    description,
+    published,
+    audio: enclosures.map((enclosure) => ({
+      src: enclosure.url,
+      type: enclosure.type,
+    }))[0],
+  }))
+  
+  const episode = episodes.filter((item) => item.id == params.episode)[0]
+
 
   if (!episode) {
     return {
@@ -90,12 +115,11 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
-
+  const feed = await parse('https://iono.fm/rss/chan/7095')
   return {
     paths: feed.items.map(({ id }) => ({
       params: {
-        episode: id.toString(),
+        episode: id,
       },
     })),
     fallback: 'blocking',
