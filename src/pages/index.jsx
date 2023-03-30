@@ -2,7 +2,8 @@ import { useMemo } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { parse } from 'rss-to-json'
-import DOMPurify from "isomorphic-dompurify"
+import DOMPurify from 'isomorphic-dompurify'
+import { NextSeo } from 'next-seo'
 
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
@@ -43,31 +44,32 @@ function EpisodeEntry({ episode }) {
   return (
     <article
       aria-labelledby={`episode-${episode.id}-title`}
-      className="py-10 sm:py-12"
-    >
+      className="py-10 sm:py-12">
       <Container>
         <div className="flex flex-col items-start">
           <h2
             id={`episode-${episode.id}-title`}
-            className="mt-2 text-lg font-bold text-slate-900"
-          >
+            className="mt-2 text-lg font-bold text-slate-900">
             <Link href={`/${episode.id}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
-          <p className="mt-1 text-base leading-7 text-slate-700"
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(episode.description) }}
+          <p
+            className="mt-1 text-base leading-7 text-slate-700"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(episode.description),
+            }}
           />
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
               onClick={() => player.toggle()}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${episode.title
-                }`}
-            >
+              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${
+                episode.title
+              }`}>
               <PlayPauseIcon
                 playing={player.playing}
                 className="h-2.5 w-2.5 fill-current"
@@ -98,17 +100,28 @@ export default function Home({ episodes }) {
 
         <meta property="og:url" content="https://zatechradio.co.za" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="ZATechRadio - Helping techies get in, stay in and thrive in tech. One conversation at a time" />
-        <meta property="og:description" content="Helping techies get in, stay in and thrive in tech. One conversation at a time" />
-        <meta property="og:image" content="./public/icon-512x512.png"  />
+        <meta
+          property="og:title"
+          content="ZATechRadio - Helping techies get in, stay in and thrive in tech. One conversation at a time"
+        />
+        <meta
+          property="og:description"
+          content="Helping techies get in, stay in and thrive in tech. One conversation at a time"
+        />
+        <meta property="og:image" content="./public/icon-512x512.png" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="zatechradio.co.za" />
         <meta property="twitter:url" content="https://zatechradio.co.za" />
-        <meta name="twitter:title" content="ZATechRadio - Helping techies get in, stay in and thrive in tech. One conversation at a time" />
-        <meta name="twitter:description" content="Helping techies get in, stay in and thrive in tech. One conversation at a time" />
-        <meta name="twitter:image" content="./public/icon-512x512.png"  />
-
+        <meta
+          name="twitter:title"
+          content="ZATechRadio - Helping techies get in, stay in and thrive in tech. One conversation at a time"
+        />
+        <meta
+          name="twitter:description"
+          content="Helping techies get in, stay in and thrive in tech. One conversation at a time"
+        />
+        <meta name="twitter:image" content="./public/icon-512x512.png" />
       </Head>
 
       <NextSeo
@@ -137,7 +150,7 @@ export default function Home({ episodes }) {
           cardType: 'summary_large_image',
         }}
       />
-      <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">
+      <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
         <Container>
           <h1 className="text-2xl font-bold leading-7 text-slate-900">
             Episodes

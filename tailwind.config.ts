@@ -1,7 +1,7 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./src/**/*.{js,jsx}'],
   theme: {
     extend: {
@@ -18,9 +18,5 @@ module.exports = {
   variants: {
     scrollbar: ['rounded'],
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/typography'),
-    require('tailwind-scrollbar'),
-  ],
-}
+  plugins: [require('@tailwindcss/typography'), require('tailwind-scrollbar')],
+} satisfies Config
