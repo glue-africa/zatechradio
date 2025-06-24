@@ -1,11 +1,12 @@
 import { useMemo } from 'react'
-import Head from 'next/head'
 import Link from 'next/link'
 import { parse } from 'rss-to-json'
+import { slugify } from '@/utils/slugify'
 
 import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
+import { SEO } from '@/components/seo/SEO'
 
 function PlayPauseIcon({ playing, ...props }) {
   return (
@@ -33,7 +34,7 @@ function EpisodeEntry({ episode }) {
         src: episode.audio.src,
         type: episode.audio.type,
       },
-      link: `/${episode.id}`,
+      link: `/episodes/${slugify(episode.title)}`,
     }),
     [episode]
   )
@@ -50,7 +51,7 @@ function EpisodeEntry({ episode }) {
             id={`episode-${episode.id}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href="#">{episode.title}</Link>
+            <Link href={`/episodes/${slugify(episode.title)}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
@@ -86,16 +87,10 @@ function EpisodeEntry({ episode }) {
 export default function Home({ episodes }) {
   return (
     <>
-      <Head>
-        <title>
-          ZATechRadio - Helping techies get in, stay in and thrive in tech. One
-          conversation at a time
-        </title>
-        <meta
-          name="description"
-          content="Helping techies get in, stay in and thrive in tech. One conversation at a time"
-        />
-      </Head>
+      <SEO 
+        url="/"
+        type="website"
+      />
       <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">
         <Container>
           <h1 className="text-2xl font-bold leading-7 text-slate-900">

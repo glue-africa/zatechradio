@@ -14,6 +14,26 @@ const nextConfig = {
     newNextLinkBehavior: true,
     scrollRestoration: true,
   },
+  trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: '/:id(\\d+)',
+        destination: '/episodes/:id',
+        permanent: true,
+      },
+      {
+        source: '/episode/:slug',
+        destination: '/episodes/:slug',
+        permanent: true,
+      },
+      {
+        source: '/episodes/:slug/amp',
+        destination: '/episodes/:slug',
+        permanent: true,
+      }
+    ];
+  },
 }
 
 module.exports = withPWA(nextConfig)
