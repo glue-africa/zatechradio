@@ -100,7 +100,7 @@ export async function getStaticProps({ params }) {
   const feed = await parse('https://iono.fm/rss/chan/7095')
   let episodes = feed.items
     .map(({ id, title, description, enclosures, created, published }) => ({
-      id: created,
+      id: String(created),
       title: `${title}`,
       description,
       published,
@@ -130,11 +130,11 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const feed = await parse('https://iono.fm/rss/chan/7095')
   return {
-    paths: feed.items.map(({ id }) => ({
+    paths: feed.items.map(({ created }) => ({
       params: {
-        episode: id,
+        episode: String(created),
       },
     })),
-    fallback: 'blocking',
+    fallback: false,
   }
 }
