@@ -7,10 +7,12 @@
 
 # testing
 /coverage
+/.playwright-mcp/
 
 # next.js
 /.next/
 /out/
+/.wrangler/
 
 # production
 /build
